@@ -1,0 +1,78 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  username: String!
+  email: String!
+  password: String!
+  cars: [Car!]
+}
+
+type Brand {
+  id: Int!
+  name: String!
+  isForeign: Boolean!
+  cars: [Car!]
+}
+
+type Car {
+  id: Int!
+  name: String!
+  price: Int!
+  year: Int!
+  brandId: Int!
+  userId: Int!
+  brand: Brand!
+  user: User!
+}
+
+type Query {
+  cars: [Car!]!
+  getCar(id: Int!): Car!
+  user(id: Int!): User!
+  brand(id: Int!): Brand!
+}
+
+type Mutation {
+  createCar(createCarInput: CreateCarInput!): Car!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): User!
+  createBrand(createBrandInput: CreateBrandInput!): Brand!
+  updateBrand(updateBrandInput: UpdateBrandInput!): Brand!
+  removeBrand(id: Int!): Brand!
+}
+
+input CreateCarInput {
+  name: String!
+  price: Int!
+  year: Int!
+  brandId: Int!
+  userId: Int!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  password: String
+  id: Int!
+}
+
+input CreateBrandInput {
+  name: String!
+  isForeign: Boolean!
+}
+
+input UpdateBrandInput {
+  name: String
+  isForeign: Boolean
+  id: Int!
+}
