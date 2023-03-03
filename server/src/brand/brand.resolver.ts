@@ -14,12 +14,12 @@ export class BrandResolver {
   }
 
   @Query(() => [Brand], { name: 'brand' })
-  findAll() {
+  brands() {
     return this.brandService.findAll();
   }
 
   @Query(() => Brand, { name: 'brand' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  getBrand(@Args('id', { type: () => Int }) id: number) {
     return this.brandService.findOne(id);
   }
 

@@ -2,10 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateBrandInput } from './dto/create-brand.input';
 import { UpdateBrandInput } from './dto/update-brand.input';
 import {InjectRepository} from "@nestjs/typeorm";
-import {Car} from "../car/car.entity";
 import {Repository} from "typeorm";
 import {Brand} from "./entities/brand.entity";
-import {User} from "../user/entities/user.entity";
 
 @Injectable()
 export class BrandService {

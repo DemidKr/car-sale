@@ -10,10 +10,35 @@ type User {
   cars: [Car!]
 }
 
+type Model {
+  id: Int!
+  name: String!
+  brandId: Int!
+  brand: Brand!
+  cars: [Car!]
+}
+
 type Brand {
   id: Int!
   name: String!
   isForeign: Boolean!
+  models: [Model!]
+  cars: [Car!]
+}
+
+type Generation {
+  id: Int!
+  name: String!
+  modelId: Int!
+  model: Model!
+  cars: [Car!]
+}
+
+type Package {
+  id: Int!
+  name: String!
+  generationId: Int!
+  generation: Generation!
   cars: [Car!]
 }
 
@@ -23,8 +48,14 @@ type Car {
   price: Int!
   year: Int!
   brandId: Int!
-  userId: Int!
   brand: Brand!
+  modelId: Int!
+  model: Model!
+  generationId: Int!
+  generation: Generation!
+  packageId: Int
+  package: Package
+  userId: Int!
   user: User!
 }
 
@@ -33,6 +64,9 @@ type Query {
   getCar(id: Int!): Car!
   user(id: Int!): User!
   brand(id: Int!): Brand!
+  generation(id: Int!): Generation!
+  model(id: Int!): Model!
+  package(id: Int!): Package!
 }
 
 type Mutation {
@@ -43,6 +77,15 @@ type Mutation {
   createBrand(createBrandInput: CreateBrandInput!): Brand!
   updateBrand(updateBrandInput: UpdateBrandInput!): Brand!
   removeBrand(id: Int!): Brand!
+  createGeneration(createGenerationInput: CreateGenerationInput!): Generation!
+  updateGeneration(updateGenerationInput: UpdateGenerationInput!): Generation!
+  removeGeneration(id: Int!): Generation!
+  createModel(createModelInput: CreateModelInput!): Model!
+  updateModel(updateModelInput: UpdateModelInput!): Model!
+  removeModel(id: Int!): Model!
+  createPackage(createPackageInput: CreatePackageInput!): Package!
+  updatePackage(updatePackageInput: UpdatePackageInput!): Package!
+  removePackage(id: Int!): Package!
 }
 
 input CreateCarInput {
@@ -51,6 +94,9 @@ input CreateCarInput {
   year: Int!
   brandId: Int!
   userId: Int!
+  modelId: Int!
+  generationId: Int!
+  packageId: Int
 }
 
 input CreateUserInput {
@@ -75,4 +121,38 @@ input UpdateBrandInput {
   name: String
   isForeign: Boolean
   id: Int!
+}
+
+input CreateGenerationInput {
+  name: String!
+  modelId: Int!
+}
+
+input UpdateGenerationInput {
+  name: String
+  modelId: Int
+  id: Int!
+}
+
+input CreateModelInput {
+  name: String!
+  brandId: Int!
+}
+
+input UpdateModelInput {
+  name: String
+  brandId: Int
+  id: Int!
+}
+
+input CreatePackageInput {
+  id: Int!
+  name: String!
+  generationId: Int!
+}
+
+input UpdatePackageInput {
+  id: Int!
+  name: String
+  generationId: Int
 }

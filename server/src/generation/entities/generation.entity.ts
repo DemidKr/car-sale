@@ -1,11 +1,11 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
-import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Car} from "../../car/car.entity";
 import {Model} from "../../model/entities/model.entity";
 
 @Entity()
 @ObjectType()
-export class Brand {
+export class Generation {
   @PrimaryGeneratedColumn()
   @Field(type => Int)
   id: number;
@@ -15,14 +15,14 @@ export class Brand {
   name: string;
 
   @Column()
-  @Field()
-  isForeign: boolean;
+  @Field(type => Int)
+  modelId: number;
 
-  @OneToMany(() => Model, (model) => model.brand)
-  @Field(type => [Model], {nullable: true})
-  models?: Model[]
+  @ManyToOne(() => Model, (model) => model.cars)
+  @Field(type => Model)
+  model: Model
 
-  @OneToMany(() => Car, (car) => car.brand)
+  @OneToMany(() => Car, (car) => car.generation)
   @Field(type => [Car], {nullable: true})
   cars?: Car[]
 }

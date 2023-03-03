@@ -1,4 +1,5 @@
 import {Field, InputType, Int} from "@nestjs/graphql";
+import {Column} from "typeorm";
 
 @InputType()
 export class CreateCarInput {
@@ -14,6 +15,15 @@ export class CreateCarInput {
     @Field(type => Int)
     brandId: number;
 
+    @Column()
     @Field(type => Int)
-    userId: number;
+    modelId: number;
+
+    @Column()
+    @Field(type => Int)
+    generationId: number;
+
+    @Column()
+    @Field(type => Int, {nullable: true})
+    packageId?: number;
 }

@@ -1,6 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {Car} from "../../car/car.entity";
+import {Favourite} from "../../favourite/entities/favourite.entity";
 
 @Entity()
 @ObjectType()
@@ -21,7 +21,7 @@ export class User {
   @Field()
   password: string;
 
-  @OneToMany(() => Car, (car) => car.user)
-  @Field(type => [Car], {nullable: true})
-  cars?: Car[]
+  @OneToMany(() => Favourite, (favourite) => favourite.user)
+  @Field(type => [Favourite], {nullable: true})
+  favourite?: Favourite[]
 }

@@ -1,10 +1,8 @@
-import {Inject, Injectable} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {Car} from "./car.entity";
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {CreateCarInput} from "./dto/create-car.input";
-import {UserService} from "../user/user.service";
-import {User} from "../user/entities/user.entity";
 
 @Injectable()
 export class CarService {
